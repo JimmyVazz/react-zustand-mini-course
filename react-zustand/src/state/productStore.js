@@ -7,10 +7,14 @@ export const productsStore = create(
     immer((set) => ({
       products: [],
       getProducts: () => {
-        fetch('https://fakestoreapi.com/products')
-        .then((response) => response.json())
-        .then((data) => set({products: data}, false, {type: 'getProducts'}))
-      }
+        fetch("https://fakestoreapi.com/products")
+          .then((response) => response.json())
+          .then((data) =>
+            set({ products: data, loading: false }, false, {
+              type: "getProducts",
+            })
+          );
+      },
     })),
     { name: "React + Zustand", store: "products" }
   )
